@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickCrave</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f7f7f7;
+            color: #222;
+        }
+
+        .navbar {
+            background: #ff6600;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar a, .menu-btn {
+            color: #ffcc00;
+            text-decoration: none;
+            font-size: 20px;
+            margin: 0 15px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover, .menu-btn:hover {
+            color: #ff6600;
+            background-color: white;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .hero {
+            position: relative;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            font-weight: bold;
+            margin-top: 60px;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .hero div {
+            background-image: linear-gradient(to right, #00bfff, #ff1493);
+            color: transparent;
+            -webkit-background-clip: text;
+            font-size: 60px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .section {
+            padding: 50px;
+        }
+
+        .benefits, .bestseller-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .benefit-item, .bestseller-item {
+            text-align: center;
+            background-color: #fff3e6;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover, .bestseller-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .benefit-item img, .bestseller-item img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+        }
+
+        .benefit-text, .bestseller-text {
+            font-size: 18px;
+            color: #ff1493;
+            font-weight: bold;
+        }
+
+        .bestsellers {
+            background: #ffefd5;
+            padding: 50px 20px;
+        }
+
+        .bestseller-item img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .bestseller-item a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .footer {
+            background: #222;
+            color: #ffcc00;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .menu-btn {
+            font-size: 24px;
+            padding: 15px 30px;
+            background-color: #ff6600;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            background-color: #ffdbcc;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#bestsellers">Bestsellers</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <div class="hero">
+        <video autoplay muted loop>
+            <source src="videos/your-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div>QuickCrave - Fast & Delicious</div>
+    </div>
+
+    <div class="section" id="benefits">
+        <h2 style="color: #00bfff;">Why Choose QuickCrave?</h2>
+        <div class="benefits">
+            <div class="benefit-item">
+                <img src="fast-delivery.png" alt="Fast Delivery">
+                <div class="benefit-text">✔ Fast Delivery</div>
+            </div>
+            <div class="benefit-item">
+                <img src="fresh-ingredients.png" alt="Fresh Ingredients">
+                <div class="benefit-text">✔ Fresh Ingredients</div>
+            </div>
+            <div class="benefit-item">
+                <img src="affordable-prices.png" alt="Affordable Prices">
+                <div class="benefit-text">✔ Affordable Prices</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 style="color: #ff1493;">View Our Menu</h2>
+        <a href="menu.html" class="menu-btn">See Menu</a>
+    </div>
+
+    <div class="section" id="bestsellers">
+        <h2 style="color: #00bfff;">Our Bestsellers</h2>
+        <div class="bestseller-container">
+            <div class="bestseller-item">
+                <a href="bestsellers.html">
+                    <img src="bestseller1.jpg" alt="Bestseller Cake">
+                    <div class="bestseller-text">🍰 Bestseller Cake</div>
+                </a>
+            </div>
+            <div class="bestseller-item">
+                <a href="new-taste-specials.html">
+                    <img src="new-taste.jpg" alt="New Taste Special">
+                    <div class="bestseller-text">🆕 New Taste Special</div>
+                </a>
+            </div>
+            <div class="bestseller-item">
+                <a href="must-try-desserts.html">
+                    <img src="must-try.jpg" alt="Must Try Dessert">
+                    <div class="bestseller-text">🔥 Must-Try Dessert</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 style="color: #ff1493;">Customer Reviews</h2>
+        <p><a href="reviews.html" class="menu-btn">Write Your Review</a></p>
+    </div>
+
+    <div class="footer" id="contact">
+        <p>Contact us at support@quickcrave.com | Phone: +123-456-7890</p>
+        <p>&copy; 2025 QuickCrave. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
