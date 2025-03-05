@@ -3,59 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuickCrave</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <meta name="description" content="QuickCrave offers authentic European cuisine with fast delivery, fresh ingredients, and affordable prices. Explore our menu and bestsellers today!">
+    <title>QuickCrave - Professional Dining Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
+        /* General Styles */
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             text-align: center;
-            background-color: #f7f7f7;
-            color: #222;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
         }
 
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #2c3e50;
+            color: #fff;
+            padding: 10px;
+            z-index: 1001;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Navbar */
         .navbar {
-            background: #ff6600;
+            background: #2c3e50;
             padding: 15px;
             position: fixed;
             width: 100%;
             top: 0;
             left: 0;
             z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
         }
 
-        .navbar a, .menu-btn {
-            color: #ffcc00;
-            text-decoration: none;
-            font-size: 20px;
+        .navbar a {
+            color: #fff;
+            font-size: 16px;
             margin: 0 15px;
-            border: none;
-            background: none;
-            cursor: pointer;
             padding: 10px 20px;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease-in-out;
+            border-radius: 5px;
         }
 
-        .navbar a:hover, .menu-btn:hover {
-            color: #ff6600;
-            background-color: white;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        .navbar a:hover {
+            background: #34495e;
             transform: translateY(-3px);
         }
 
-        .hero {
+        /* Shopping Cart Icon */
+        .cart-icon {
             position: relative;
-            height: 400px;
+            margin-left: auto;
+            padding: 10px 20px;
+        }
+
+        .cart-icon .cart-count {
+            position: absolute;
+            top: -5px;
+            right: 5px;
+            background: #ff6600;
+            color: white;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        /* Collaborators Section */
+        .collaborators-section {
+            margin-top: 80px;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .collaborators-marquee {
+            display: flex;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 20px 0;
+        }
+
+        .collaborators-marquee img {
+            height: 50px;
+            margin: 0 40px;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+
+        .collaborators-marquee img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .collaborators-marquee div {
+            display: flex;
+            animation: scroll 20s linear infinite;
+        }
+
+        /* Hero Section */
+        .hero-container {
+            position: relative;
+            overflow: hidden;
+            height: 500px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 35px;
-            font-weight: bold;
-            margin-top: 60px;
+            color: #fff;
+            text-align: center;
         }
 
-        .hero video {
+        .hero-video {
             position: absolute;
             top: 0;
             left: 0;
@@ -63,186 +150,1434 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
+            filter: brightness(0.6);
         }
 
-        .hero div {
-            background-image: linear-gradient(to right, #00bfff, #ff1493);
-            color: transparent;
-            -webkit-background-clip: text;
-            font-size: 60px;
+        .hero-text {
+            font-size: 48px;
             font-weight: bold;
             text-transform: uppercase;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
         }
 
+        .slogan {
+            font-size: 24px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Sections */
         .section {
-            padding: 50px;
+            padding: 80px 20px;
+            background: #fff;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .benefits, .bestseller-container {
+        .benefits, .bestseller-container, .collaboration-container {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 30px;
         }
 
-        .benefit-item, .bestseller-item {
+        .benefit-item, .bestseller-item, .collaboration-item {
             text-align: center;
-            background-color: #fff3e6;
+            background: #fff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 250px;
             transition: all 0.3s ease;
         }
 
-        .benefit-item:hover, .bestseller-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+        .benefit-item:hover, .bestseller-item:hover, .collaboration-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
-        .benefit-item img, .bestseller-item img {
+        .benefit-item img, .bestseller-item img, .collaboration-item img {
             width: 80px;
             height: 80px;
             margin-bottom: 15px;
         }
 
-        .benefit-text, .bestseller-text {
+        .benefit-text, .bestseller-text, .collaboration-text {
             font-size: 18px;
-            color: #ff1493;
+            color: #2c3e50;
             font-weight: bold;
         }
 
-        .bestsellers {
-            background: #ffefd5;
-            padding: 50px 20px;
+        /* Featured Items Section */
+        .featured-items-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
         }
 
-        .bestseller-item img {
+        .featured-item {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            transition: all 0.3s ease;
+        }
+
+        .featured-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .featured-item img {
             width: 100%;
-            height: auto;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
             margin-bottom: 15px;
-            border-radius: 8px;
+            transition: transform 0.3s ease;
         }
 
-        .bestseller-item a {
+        .featured-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .featured-item h3 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .featured-item p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .add-to-cart {
+            font-size: 16px;
+            padding: 10px 20px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: #34495e;
+            transform: translateY(-3px);
+        }
+
+        /* Menu Button */
+        .menu-btn {
+            font-size: 18px;
+            padding: 15px 30px;
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 5px;
             text-decoration: none;
-            color: inherit;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 20px;
         }
 
-        .footer {
-            background: #222;
+        .menu-btn:hover {
+            background-color: #34495e;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Reviews Section */
+        .reviews-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .review-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .review-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .review-rating {
+            font-size: 24px;
             color: #ffcc00;
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .review-author {
+            font-size: 14px;
+            color: #777;
+            font-style: italic;
+        }
+
+        /* Membership Section */
+        .membership-benefits {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .membership-benefits .benefit-item {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            transition: all 0.3s ease;
+        }
+
+        .membership-benefits .benefit-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .membership-benefits .benefit-item i {
+            font-size: 40px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .membership-benefits .benefit-item .benefit-text {
+            font-size: 20px;
+            color: #2c3e50;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .membership-benefits .benefit-item p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Membership Form */
+        .membership-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 30px auto;
+        }
+
+        .membership-form input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .membership-form button {
+            padding: 15px;
+            font-size: 18px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: #fff;
             text-align: center;
             padding: 20px;
             margin-top: 20px;
         }
 
-        .menu-btn {
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
             font-size: 24px;
-            padding: 15px 30px;
-            background-color: #ff6600;
-            color: white;
-            border-radius: 5px;
-            text-decoration: none;
+            color: #fff;
             transition: all 0.3s ease;
         }
 
-        .menu-btn:hover {
-            background-color: #ffdbcc;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            transform: scale(1.05);
+        .social-icons a:hover {
+            color: #00bfff;
+            transform: scale(1.2);
+        }
+
+        /* Back to Top Button */
+        #back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2c3e50;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #back-to-top:hover {
+            background: #34495e;
+            transform: scale(1.1);
+        }
+
+        /* Discounts Button */
+        .discounts-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .discounts-btn:hover {
+            background-color: #34495e;
+            transform: translateY(-3px);
+        }
+
+        /* Discounts Flyover */
+        .discounts-flyover {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 300px;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: left 0.3s ease;
+            z-index: 1001;
+        }
+
+        .discounts-flyover.open {
+            left: 0;
+        }
+
+        .discounts-content {
+            padding: 20px;
+            position: relative;
+        }
+
+        .close-discounts {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #2c3e50;
+        }
+
+        .discounts-content h2 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .discounts-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .discounts-content ul li {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        /* Overlay for flyover */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-container {
+                height: 300px;
+            }
+
+            .benefits, .bestseller-container, .collaboration-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .review-item {
+                width: 100%;
+            }
+
+            .collaborators-marquee img {
+                height: 40px;
+                margin: 0 20px;
+            }
+
+            .featured-items-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .featured-item {
+                width: 100%;
+            }
+
+            .membership-benefits {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* New Styles for Enhancements */
+        .live-order-counter {
+            background: #2c3e50;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px auto;
+            width: fit-content;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .offer-banner {
+            background: #ff6600;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            position: sticky;
+            top: 60px;
+            z-index: 999;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            text-align: center;
+            width: 200px;
+        }
+
+        .step i {
+            font-size: 40px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .step h3 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .guarantee-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            text-align: left;
+        }
+
+        .guarantee-content img {
+            width: 100px;
+            height: auto;
+        }
+
+        .guarantee-content p {
+            font-size: 18px;
+            max-width: 600px;
+        }
+
+        .trending-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .trending-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .trending-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .difference-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .difference-item {
+            text-align: center;
+            width: 250px;
+        }
+
+        .difference-item i {
+            font-size: 40px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .difference-item h3 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .difference-item p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .bts-container {
+            text-align: center;
+        }
+
+        .bts-container img {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .bts-container p {
+            font-size: 18px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 10px;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 15px;
+            font-size: 18px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            padding: 15px;
+            display: none;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .faq-answer p {
+            margin: 0;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #close-popup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        /* Recently Ordered Section */
+        .recently-ordered-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .recently-ordered-item {
+            text-align: center;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .recently-ordered-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .recently-ordered-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .recently-ordered-item p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Chef's Special Banner */
+        .chef-special-banner {
+            background: #ff6600;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            position: sticky;
+            top: 60px;
+            z-index: 999;
+            animation: pulse 2s infinite;
+        }
+
+        /* Happy Customer Guarantee */
+        .guarantee-banner {
+            background: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .guarantee-banner i {
+            margin-right: 10px;
+        }
+
+        /* Free Delivery Progress Bar */
+        .progress-bar-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: #ff6600;
+            transition: width 0.3s ease;
+        }
+
+        /* Frequently Bought Together */
+        .frequently-bought-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .frequently-bought-item {
+            text-align: center;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .frequently-bought-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .frequently-bought-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .frequently-bought-item p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Live Chat Button */
+        .live-chat-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2c3e50;
+            color: #fff;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .live-chat-btn:hover {
+            background: #34495e;
+            transform: translateY(-3px);
         }
     </style>
 </head>
 <body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
+    <!-- Navbar -->
     <div class="navbar">
         <a href="#">Home</a>
         <a href="menu.html">Menu</a>
         <a href="#benefits">Benefits</a>
         <a href="#bestsellers">Bestsellers</a>
+        <a href="#collaborations">Collaborations</a>
         <a href="#reviews">Reviews</a>
         <a href="#contact">Contact</a>
+        <a href="cart.html" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </a>
     </div>
 
-    <div class="hero">
-        <video autoplay muted loop>
+    <!-- Discounts Button -->
+    <button id="discounts-btn" class="discounts-btn">
+        <i class="fas fa-tag"></i> Available Discounts
+    </button>
+
+    <!-- Discounts Flyover -->
+    <div id="discounts-flyover" class="discounts-flyover">
+        <div class="discounts-content">
+            <button id="close-discounts" class="close-discounts">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Available Discounts</h2>
+            <ul>
+                <li>🎉 Get 10% off on your first order!</li>
+                <li>🎂 15% off on all cakes for birthdays.</li>
+                <li>🍰 Buy 2 desserts, get 1 free!</li>
+                <li>🎁 Free delivery on orders above $50.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Collaborators Section -->
+    <div class="collaborators-section">
+        <div class="collaborators-marquee">
+            <div>
+                <img src="collab1.png" alt="Bakers Delight">
+                <img src="collab2.png" alt="Gourmet Delights">
+                <img src="collab3.png" alt="Sweet Treats Bakery">
+                <img src="collab4.png" alt="Artisan Bakes">
+                <img src="collab5.png" alt="Chef's Choice">
+                <img src="collab6.png" alt="Delicious Eats">
+            </div>
+            <div>
+                <img src="collab1.png" alt="Bakers Delight">
+                <img src="collab2.png" alt="Gourmet Delights">
+                <img src="collab3.png" alt="Sweet Treats Bakery">
+                <img src="collab4.png" alt="Artisan Bakes">
+                <img src="collab5.png" alt="Chef's Choice">
+                <img src="collab6.png" alt="Delicious Eats">
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero-container" id="main-content">
+        <video class="hero-video" autoplay muted loop poster="fallback-image.jpg">
             <source src="videos/your-video.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <div>QuickCrave - Fast & Delicious</div>
+        <div class="hero-text">QuickCrave - Professional Dining</div>
+        <div class="slogan">Savor the Excellence, Crave the Taste</div>
     </div>
 
+    <!-- Happy Customer Guarantee Banner -->
+    <div class="guarantee-banner">
+        <i class="fas fa-smile"></i> 100% Happiness Guarantee - Love your meal or get a full refund!
+    </div>
+
+    <!-- Seasonal Specials Banner -->
+    <div class="seasonal-banner">
+        🍂 Fall Special: Try our Pumpkin Spice Cheesecake - Limited Time Only! 🍂
+    </div>
+
+    <!-- Live Order Counter -->
+    <div class="live-order-counter">
+        <span id="order-count">0</span> orders placed today!
+    </div>
+
+    <!-- Free Delivery Progress Bar -->
+    <div class="progress-bar-container">
+        <p>Add $<span id="amount-left">20</span> more to your cart for <strong>FREE DELIVERY!</strong></p>
+        <div class="progress-bar">
+            <div class="progress" style="width: 30%;"></div>
+        </div>
+    </div>
+
+    <!-- Recently Ordered Section -->
+    <div class="section" id="recently-ordered">
+        <h2>Recently Ordered</h2>
+        <div class="recently-ordered-container">
+            <!-- Items will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="section" id="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps-container">
+            <div class="step">
+                <i class="fas fa-utensils"></i>
+                <h3>Choose Your Meal</h3>
+                <p>Browse our menu and select your favorite dishes.</p>
+            </div>
+            <div class="step">
+                <i class="fas fa-truck"></i>
+                <h3>Fast Delivery</h3>
+                <p>We deliver fresh, hot meals right to your doorstep.</p>
+            </div>
+            <div class="step">
+                <i class="fas fa-smile"></i>
+                <h3>Enjoy!</h3>
+                <p>Savor the taste of professional dining at home.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Choose Us Section -->
     <div class="section" id="benefits">
-        <h2 style="color: #00bfff;">Why Choose QuickCrave?</h2>
+        <h2>Why Choose QuickCrave?</h2>
         <div class="benefits">
             <div class="benefit-item">
-                <img src="fast-delivery.png" alt="Fast Delivery">
+                <img src="fast-delivery.png" alt="Fast Delivery Icon">
                 <div class="benefit-text">✔ Fast Delivery</div>
             </div>
             <div class="benefit-item">
-                <img src="fresh-ingredients.png" alt="Fresh Ingredients">
+                <img src="fresh-ingredients.png" alt="Fresh Ingredients Icon">
                 <div class="benefit-text">✔ Fresh Ingredients</div>
             </div>
             <div class="benefit-item">
-                <img src="affordable-prices.png" alt="Affordable Prices">
+                <img src="affordable-prices.png" alt="Affordable Prices Icon">
                 <div class="benefit-text">✔ Affordable Prices</div>
             </div>
         </div>
     </div>
 
-    <div class="section">
-        <h2 style="color: #ff1493;">View Our Menu</h2>
-        <a href="menu.html" class="menu-btn">See Menu</a>
-    </div>
-
+    <!-- Bestsellers Section -->
     <div class="section" id="bestsellers">
-        <h2 style="color: #00bfff;">Our Bestsellers</h2>
+        <h2>Our Bestsellers</h2>
         <div class="bestseller-container">
             <div class="bestseller-item">
                 <a href="bestsellers.html">
-                    <img src="bestseller1.jpg" alt="Bestseller Cake">
+                    <img src="bestseller1.jpg" alt="Bestseller Cake" loading="lazy">
                     <div class="bestseller-text">🍰 Bestseller Cake</div>
                 </a>
             </div>
             <div class="bestseller-item">
                 <a href="new-taste-specials.html">
-                    <img src="new-taste.jpg" alt="New Taste Special">
+                    <img src="new-taste.jpg" alt="New Taste Special" loading="lazy">
                     <div class="bestseller-text">🆕 New Taste Special</div>
                 </a>
             </div>
             <div class="bestseller-item">
                 <a href="must-try-desserts.html">
-                    <img src="must-try.jpg" alt="Must Try Dessert">
+                    <img src="must-try.jpg" alt="Must Try Dessert" loading="lazy">
                     <div class="bestseller-text">🔥 Must-Try Dessert</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Featured Items Section -->
+        <h2 style="margin-top: 50px;">Featured Items</h2>
+        <div class="featured-items-container">
+            <div class="featured-item">
+                <img src="featured1.jpg" alt="Chocolate Lava Cake" loading="lazy">
+                <h3>Chocolate Lava Cake</h3>
+                <p>A rich, gooey chocolate cake with a molten center. Perfect for chocolate lovers!</p>
+                <p><strong>$8.99</strong></p>
+                <div class="stock-indicator">Only 3 left in stock!</div>
+                <button class="add-to-cart" data-name="Chocolate Lava Cake" data-price="8.99">Add to Cart</button>
+            </div>
+            <div class="featured-item">
+                <img src="featured2.jpg" alt="Tiramisu" loading="lazy">
+                <h3>Tiramisu</h3>
+                <p>Classic Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cream.</p>
+                <p><strong>$7.99</strong></p>
+                <button class="add-to-cart" data-name="Tiramisu" data-price="7.99">Add to Cart</button>
+            </div>
+            <div class="featured-item">
+                <img src="featured3.jpg" alt="Cheesecake" loading="lazy">
+                <h3>Cheesecake</h3>
+                <p>Creamy and decadent cheesecake with a buttery graham cracker crust.</p>
+                <p><strong>$9.99</strong></p>
+                <button class="add-to-cart" data-name="Cheesecake" data-price="9.99">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Frequently Bought Together Section -->
+        <h2 style="margin-top: 50px;">Frequently Bought Together</h2>
+        <div class="frequently-bought-container">
+            <div class="frequently-bought-item">
+                <img src="chocolate-lava-cake.jpg" alt="Chocolate Lava Cake" loading="lazy">
+                <h3>Chocolate Lava Cake</h3>
+                <p><strong>$8.99</strong></p>
+                <button class="add-to-cart" data-name="Chocolate Lava Cake" data-price="8.99">Add to Cart</button>
+            </div>
+            <div class="frequently-bought-item">
+                <img src="vanilla-ice-cream.jpg" alt="Vanilla Ice Cream" loading="lazy">
+                <h3>Vanilla Ice Cream</h3>
+                <p><strong>$4.99</strong></p>
+                <button class="add-to-cart" data-name="Vanilla Ice Cream" data-price="4.99">Add to Cart</button>
+            </div>
+            <div class="frequently-bought-item">
+                <img src="espresso.jpg" alt="Espresso" loading="lazy">
+                <h3>Espresso</h3>
+                <p><strong>$3.99</strong></p>
+                <button class="add-to-cart" data-name="Espresso" data-price="3.99">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Menu Button -->
+        <p style="margin-top: 30px;">
+            <a href="menu.html" class="menu-btn">Explore Full Menu</a>
+        </p>
+    </div>
+
+    <!-- Trending Now Section -->
+    <div class="section" id="trending">
+        <h2>Trending Now</h2>
+        <div class="trending-container">
+            <div class="trending-item">
+                <img src="trending1.jpg" alt="Chocolate Fondue" loading="lazy">
+                <h3>Chocolate Fondue</h3>
+                <p><strong>$14.99</strong></p>
+                <button class="add-to-cart" data-name="Chocolate Fondue" data-price="14.99">Add to Cart</button>
+            </div>
+            <div class="trending-item">
+                <img src="trending2.jpg" alt="Matcha Cheesecake" loading="lazy">
+                <h3>Matcha Cheesecake</h3>
+                <p><strong>$11.99</strong></p>
+                <button class="add-to-cart" data-name="Matcha Cheesecake" data-price="11.99">Add to Cart</button>
+            </div>
+            <div class="trending-item">
+                <img src="trending3.jpg" alt="Berry Tart" loading="lazy">
+                <h3>Berry Tart</h3>
+                <p><strong>$9.99</strong></p>
+                <button class="add-to-cart" data-name="Berry Tart" data-price="9.99">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why We're Different Section -->
+    <div class="section" id="why-different">
+        <h2>Why We're Different</h2>
+        <div class="difference-container">
+            <div class="difference-item">
+                <i class="fas fa-leaf"></i>
+                <h3>100% Organic Ingredients</h3>
+                <p>We use only the freshest, organic ingredients in all our dishes.</p>
+            </div>
+            <div class="difference-item">
+                <i class="fas fa-heart"></i>
+                <h3>Made with Love</h3>
+                <p>Every dish is crafted with care and passion by our expert chefs.</p>
+            </div>
+            <div class="difference-item">
+                <i class="fas fa-clock"></i>
+                <h3>Ready in Minutes</h3>
+                <p>Get your favorite meals delivered fast, without compromising on quality.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Behind the Scenes Section -->
+    <div class="section" id="behind-the-scenes">
+        <h2>Behind the Scenes</h2>
+        <div class="bts-container">
+            <img src="kitchen.jpg" alt="Our Kitchen" loading="lazy">
+            <p>Meet the team behind your favorite meals! Our chefs work tirelessly to bring you the best dining experience.</p>
+        </div>
+    </div>
+
+    <!-- Collaborations Section -->
+    <div class="section" id="collaborations">
+        <h2>Our Collaborations</h2>
+        <div class="collaboration-container">
+            <div class="collaboration-item">
+                <a href="#" aria-label="Bakers Delight Collaboration">
+                    <img src="collab1.jpg" alt="Bakers Delight Collaboration" loading="lazy">
+                    <div class="collaboration-text">Bakers Delight</div>
+                </a>
+            </div>
+            <div class="collaboration-item">
+                <a href="#" aria-label="Gourmet Delights Collaboration">
+                    <img src="collab2.jpg" alt="Gourmet Delights Collaboration" loading="lazy">
+                    <div class="collaboration-text">Gourmet Delights</div>
+                </a>
+            </div>
+            <div class="collaboration-item">
+                <a href="#" aria-label="Sweet Treats Bakery Collaboration">
+                    <img src="collab3.jpg" alt="Sweet Treats Bakery Collaboration" loading="lazy">
+                    <div class="collaboration-text">Sweet Treats Bakery</div>
                 </a>
             </div>
         </div>
     </div>
 
-    <div class="section">
-        <h2 style="color: #ff1493;">Customer Reviews</h2>
+    <!-- Customer Reviews Section -->
+    <div class="section" id="reviews">
+        <h2>Customer Reviews</h2>
+        <div class="reviews-container">
+            <!-- Review 1 -->
+            <div class="review-item">
+                <div class="review-rating">
+                    ⭐⭐⭐⭐⭐
+                </div>
+                <div class="review-text">
+                    "QuickCrave has the most delicious desserts I've ever tasted! The delivery was super fast, and the packaging was perfect. Highly recommend!"
+                </div>
+                <div class="review-author">
+                    – Sarah L.
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="review-item">
+                <div class="review-rating">
+                    ⭐⭐⭐⭐
+                </div>
+                <div class="review-text">
+                    "I ordered the Bestseller Cake for my birthday, and it was a hit! Everyone loved it. The only reason I'm giving 4 stars is because it was a bit pricey."
+                </div>
+                <div class="review-author">
+                    – John D.
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="review-item">
+                <div class="review-rating">
+                    ⭐⭐⭐⭐⭐
+                </div>
+                <div class="review-text">
+                    "Amazing service and even better food! The Must-Try Dessert is a game-changer. I can't wait to order again!"
+                </div>
+                <div class="review-author">
+                    – Emily R.
+                </div>
+            </div>
+        </div>
         <p><a href="reviews.html" class="menu-btn">Write Your Review</a></p>
     </div>
 
+    <!-- Customer Photos Section -->
+    <div class="section" id="customer-photos">
+        <h2>Customer Photos</h2>
+        <div class="customer-photos-container">
+            <img src="customer1.jpg" alt="Customer Photo 1" loading="lazy">
+            <img src="customer2.jpg" alt="Customer Photo 2" loading="lazy">
+            <img src="customer3.jpg" alt="Customer Photo 3" loading="lazy">
+        </div>
+    </div>
+
+    <!-- Membership Section -->
+    <div class="section" id="membership">
+        <h2>Join Our Membership Program</h2>
+        <p>Unlock exclusive benefits and rewards by becoming a QuickCrave member today!</p>
+        <div class="membership-benefits">
+            <div class="benefit-item">
+                <i class="fas fa-star"></i>
+                <div class="benefit-text">Exclusive Discounts</div>
+                <p>Get access to members-only discounts and special offers.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-gift"></i>
+                <div class="benefit-text">Free Birthday Treats</div>
+                <p>Celebrate your birthday with a free dessert on us!</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-shipping-fast"></i>
+                <div class="benefit-text">Priority Delivery</div>
+                <p>Enjoy faster delivery times as a valued member.</p>
+            </div>
+        </div>
+        <form id="membership-form" class="membership-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <button type="submit" class="menu-btn">Sign Up Now</button>
+        </form>
+    </div>
+
+    <!-- Frequently Asked Questions Section -->
+    <div class="section" id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">What are your delivery hours?</button>
+                <div class="faq-answer">
+                    <p>We deliver from 10 AM to 10 PM, 7 days a week.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Do you offer vegetarian options?</button>
+                <div class="faq-answer">
+                    <p>Yes, we have a wide range of vegetarian and vegan dishes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thank You Popup -->
+    <div id="thank-you-popup" class="popup">
+        <div class="popup-content">
+            <span id="close-popup">&times;</span>
+            <h2>Thank You!</h2>
+            <p>We appreciate your order. Enjoy your meal!</p>
+        </div>
+    </div>
+
+    <!-- Chef's Recommendation Popup -->
+    <div id="chef-recommendation-popup" class="popup">
+        <div class="popup-content">
+            <span id="close-chef-popup">&times;</span>
+            <h2>Chef's Recommendation</h2>
+            <img src="chefs-special.jpg" alt="Chef's Special" loading="lazy">
+            <p>Try our <strong>Chocolate Lava Cake</strong> - a customer favorite!</p>
+            <button class="add-to-cart" data-name="Chocolate Lava Cake" data-price="8.99">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Live Chat Button -->
+    <button id="live-chat-btn" class="live-chat-btn">
+        <i class="fas fa-comment"></i> Live Chat
+    </button>
+
+    <!-- Footer -->
     <div class="footer" id="contact">
-        <p>Contact us at support@quickcrave.com | Phone: +123-456-7890</p>
+        <p>Contact us at <a href="mailto:support@quickcrave.com">support@quickcrave.com</a> | Phone: +123-456-7890</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/quickcrave.demo" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com/quickcrave_demo" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/quickcrave_demo" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/quickcrave-demo" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/@quickcravedemo" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
         <p>&copy; 2025 QuickCrave. All rights reserved.</p>
     </div>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" title="Go to top">↑</button>
+
+    <script>
+        // Cart functionality
+        let cart = [];
+        const cartCount = document.querySelector('.cart-count');
+
+        // Function to add item to cart
+        function addToCart(itemName, itemPrice) {
+            const item = { name: itemName, price: itemPrice };
+            cart.push(item);
+            updateCartCount();
+            saveCartToLocalStorage();
+        }
+
+        // Function to update cart count
+        function updateCartCount() {
+            cartCount.textContent = cart.length;
+        }
+
+        // Function to save cart to localStorage
+        function saveCartToLocalStorage() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Function to load cart from localStorage
+        function loadCartFromLocalStorage() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartCount();
+            }
+        }
+
+        // Load cart when the page loads
+        loadCartFromLocalStorage();
+
+        // Add event listeners to "Add to Cart" buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const itemName = button.getAttribute('data-name');
+                const itemPrice = parseFloat(button.getAttribute('data-price'));
+                addToCart(itemName, itemPrice);
+                alert(`${itemName} added to cart!`);
+            });
+        });
+
+        // Back to top button functionality
+        window.onscroll = function() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("back-to-top").style.display = "block";
+            } else {
+                document.getElementById("back-to-top").style.display = "none";
+            }
+        };
+
+        document.getElementById("back-to-top").onclick = function() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        };
+
+        // Discounts Flyover functionality
+        const discountsBtn = document.getElementById('discounts-btn');
+        const discountsFlyover = document.getElementById('discounts-flyover');
+        const closeDiscounts = document.getElementById('close-discounts');
+        const overlay = document.querySelector('.overlay');
+
+        // Open discounts flyover
+        discountsBtn.addEventListener('click', () => {
+            discountsFlyover.classList.add('open');
+            overlay.classList.add('active');
+        });
+
+        // Close discounts flyover
+        closeDiscounts.addEventListener('click', () => {
+            discountsFlyover.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // Close flyover when clicking outside
+        overlay.addEventListener('click', () => {
+            discountsFlyover.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // Membership Form Submission
+        document.getElementById('membership-form').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent form submission
+            const name = e.target.name.value;
+            const email = e.target.email.value;
+
+            // Simulate form submission (replace with actual API call)
+            setTimeout(() => {
+                alert(`Thank you, ${name}! You've successfully signed up for our membership program.`);
+                e.target.reset(); // Clear the form
+            }, 1000);
+        });
+
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+        // Thank You Popup
+        setTimeout(() => {
+            document.getElementById('thank-you-popup').style.display = 'block';
+        }, 5000); // Show after 5 seconds
+
+        document.getElementById('close-popup').addEventListener('click', () => {
+            document.getElementById('thank-you-popup').style.display = 'none';
+        });
+
+        // Live Order Counter
+        let orderCount = 0;
+        setInterval(() => {
+            orderCount += Math.floor(Math.random() * 5);
+            document.getElementById('order-count').textContent = orderCount;
+        }, 5000); // Update every 5 seconds
+
+        // Countdown Timer
+        let timeLeft = 600; // 10 minutes in seconds
+        const countdownElement = document.getElementById('countdown');
+
+        const timer = setInterval(() => {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            countdownElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            timeLeft--;
+
+            if (timeLeft < 0) {
+                clearInterval(timer);
+                countdownElement.textContent = "Offer Expired!";
+            }
+        }, 1000);
+
+        // Chef's Special Rotator
+        const chefSpecialDishes = ["Chocolate Lava Cake", "Tiramisu", "Cheesecake", "Matcha Cheesecake"];
+        let currentDishIndex = 0;
+
+        setInterval(() => {
+            document.getElementById('chef-special-dish').textContent = chefSpecialDishes[currentDishIndex];
+            currentDishIndex = (currentDishIndex + 1) % chefSpecialDishes.length;
+        }, 5000); // Change every 5 seconds
+
+        // Recently Ordered Items
+        const recentlyOrderedItems = [
+            { name: "Berry Tart", image: "berry-tart.jpg", time: "3 minutes ago" },
+            { name: "Matcha Cheesecake", image: "matcha-cheesecake.jpg", time: "7 minutes ago" },
+            { name: "Chocolate Fondue", image: "chocolate-fondue.jpg", time: "12 minutes ago" },
+            { name: "Tiramisu", image: "tiramisu.jpg", time: "15 minutes ago" },
+            { name: "Cheesecake", image: "cheesecake.jpg", time: "20 minutes ago" }
+        ];
+
+        const recentlyOrderedContainer = document.querySelector('.recently-ordered-container');
+        recentlyOrderedContainer.innerHTML = recentlyOrderedItems.map(item => `
+            <div class="recently-ordered-item">
+                <img src="${item.image}" alt="${item.name}" loading="lazy">
+                <p>${item.name} ordered <span class="time-ago">${item.time}</span></p>
+            </div>
+        `).join('');
+
+        // Update progress bar based on cart total
+        function updateProgressBar() {
+            const cartTotal = cart.reduce((total, item) => total + item.price, 0);
+            const amountLeft = Math.max(0, 50 - cartTotal); // Free delivery threshold is $50
+            const progress = ((50 - amountLeft) / 50) * 100;
+
+            document.getElementById('amount-left').textContent = amountLeft.toFixed(2);
+            document.querySelector('.progress').style.width = `${progress}%`;
+        }
+
+        // Call this function whenever an item is added to the cart
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                updateProgressBar();
+            });
+        });
+
+        // Show Chef's Recommendation Popup after 10 seconds
+        setTimeout(() => {
+            document.getElementById('chef-recommendation-popup').style.display = 'block';
+        }, 10000);
+
+        // Close Chef's Recommendation Popup
+        document.getElementById('close-chef-popup').addEventListener('click', () => {
+            document.getElementById('chef-recommendation-popup').style.display = 'none';
+        });
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
