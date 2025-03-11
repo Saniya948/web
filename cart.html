@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="QuickCrave offers authentic European cuisine with fast delivery, fresh ingredients, and affordable prices. Manage your cart and proceed to checkout.">
+    <title>QuickCrave - Your Cart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        /* Global Styles (Replicated from index.html) */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navbar (Replicated from index.html) */
+        .navbar {
+            background: #2c3e50;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            font-size: 16px;
+            margin: 0 15px;
+            padding: 10px 20px;
+            transition: all 0.3s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .navbar a:hover {
+            background: #34495e;
+            transform: translateY(-3px);
+        }
+
+        .cart-icon {
+            position: relative;
+            margin-left: auto;
+            padding: 10px 20px;
+        }
+
+        .cart-icon .cart-count {
+            position: absolute;
+            top: -5px;
+            right: 5px;
+            background: #ff6600;
+            color: white;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        /* Cart Section */
+        .cart-section {
+            padding: 100px 20px 60px;
+            background: #fff;
+            max-width: 1200px;
+            margin: 80px auto 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-items {
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .cart-item:hover {
+            background: #f9f9f9;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-size: 18px;
+            font-weight: 500;
+            color: #2c3e50;
+            flex: 1; /* Allow item name to take up available space */
+        }
+
+        .item-price {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ff6f61;
+            min-width: 80px; /* Ensure consistent width for price */
+            text-align: right; /* Align price to the right */
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 20px; /* Add space between controls and price */
+        }
+
+        .quantity-controls button {
+            background: #2c3e50;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-controls button:hover {
+            background: #34495e;
+        }
+
+        .quantity {
+            font-size: 18px;
+            font-weight: 500;
+            color: #2c3e50;
+            min-width: 30px; /* Ensure consistent width for quantity */
+            text-align: center;
+        }
+
+        .total {
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 30px;
+            text-align: right;
+            color: #2c3e50;
+        }
+
+        .checkout-btn {
+            background: #ff6f61;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        .checkout-btn:hover {
+            background: #ff4a3d;
+            transform: translateY(-3px);
+        }
+
+        .empty-cart-message {
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+            padding: 40px 0;
+        }
+
+        /* Thank You Popup */
+        .thank-you-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .thank-you-popup.active {
+            display: flex;
+        }
+
+        .thank-you-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .thank-you-content h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .thank-you-content p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .thank-you-content button {
+            background: #ff6f61;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .thank-you-content button:hover {
+            background: #ff4a3d;
+        }
+
+        /* Footer (Replicated from index.html) */
+        .footer {
+            background: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer a {
+            color: #ff6f61;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #ff4a3d;
+        }
+
+        .footer p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 24px;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #00bfff;
+            transform: scale(1.2);
+        }
+
+        /* Back to Top Button */
+        #back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2c3e50;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #back-to-top:hover {
+            background: #34495e;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#bestsellers">Bestsellers</a>
+        <a href="#collaborations">Collaborations</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+        <a href="cart.html" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </a>
+    </div>
+
+    <!-- Cart Section -->
+    <main class="cart-section" id="main-content">
+        <h2>Your Cart</h2>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be dynamically inserted here -->
+            <div class="empty-cart-message">Your cart is empty. Start adding items from our <a href="menu.html">menu</a>!</div>
+        </div>
+        <div class="total" id="total">
+            Total: $0.00
+        </div>
+        <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    </main>
+
+    <!-- Thank You Popup -->
+    <div class="thank-you-popup" id="thank-you-popup">
+        <div class="thank-you-content">
+            <h2>Thank You for Your Order!</h2>
+            <p>Your order has been placed successfully. We appreciate your business!</p>
+            <button onclick="closeThankYouPopup()">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer" id="contact">
+        <p>Contact us at <a href="mailto:support@quickcrave.com">support@quickcrave.com</a> | Phone: +123-456-7890</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/quickcrave.demo" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com/quickcrave_demo" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/quickcrave_demo" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/quickcrave-demo" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/@quickcravedemo" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>&copy; 2025 QuickCrave. All rights reserved.</p>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" title="Go to top">↑</button>
+
+    <script>
+        // Retrieve cart items from localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Display cart items
+        const cartItemsContainer = document.getElementById('cart-items');
+        const totalElement = document.getElementById('total');
+        const emptyCartMessage = document.querySelector('.empty-cart-message');
+        let total = 0;
+
+        function renderCart() {
+            cartItemsContainer.innerHTML = ''; // Clear the cart container
+            total = 0; // Reset total
+
+            if (cart.length === 0) {
+                emptyCartMessage.style.display = 'block';
+                totalElement.textContent = `Total: $0.00`;
+                updateCartCount();
+                return;
+            }
+
+            emptyCartMessage.style.display = 'none';
+            cart.forEach((item, index) => {
+                const price = parseFloat(item.price);
+                const quantity = item.quantity || 1; // Default quantity is 1
+
+                // Create cart item element
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <span class="item-name">${item.name}</span>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity(${index})">-</button>
+                        <span class="quantity">${quantity}</span>
+                        <button onclick="increaseQuantity(${index})">+</button>
+                    </div>
+                    <span class="item-price">$${(price * quantity).toFixed(2)}</span>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+
+                // Add to total
+                total += price * quantity;
+            });
+
+            // Display total
+            totalElement.textContent = `Total: $${total.toFixed(2)}`;
+            updateCartCount();
+        }
+
+        // Increase quantity
+        function increaseQuantity(index) {
+            cart[index].quantity = (cart[index].quantity || 1) + 1;
+            saveCartToLocalStorage();
+            renderCart();
+        }
+
+        // Decrease quantity
+        function decreaseQuantity(index) {
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+            } else {
+                cart.splice(index, 1); // Remove item if quantity is 1
+            }
+            saveCartToLocalStorage();
+            renderCart();
+        }
+
+        // Save cart to localStorage
+        function saveCartToLocalStorage() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            cartCount.textContent = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        }
+
+        // Checkout function
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty. Add items to proceed to checkout.');
+                return;
+            }
+            // Show the Thank You popup
+            const thankYouPopup = document.getElementById('thank-you-popup');
+            thankYouPopup.classList.add('active');
+            // Clear the cart after checkout
+            localStorage.removeItem('cart');
+            // Update the cart display
+            renderCart();
+        }
+
+        // Close Thank You Popup
+        function closeThankYouPopup() {
+            const thankYouPopup = document.getElementById('thank-you-popup');
+            thankYouPopup.classList.remove('active');
+            // Redirect to home page
+            window.location.href = 'index.html';
+        }
+
+        // Load cart when the page loads
+        renderCart();
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
