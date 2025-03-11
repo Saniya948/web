@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover QuickCrave's New Taste Specials - a curated selection of unique and delicious dishes. Order now for fast delivery!">
+    <title>New Taste Specials - QuickCrave</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #2c3e50;
+            color: #fff;
+            padding: 10px;
+            z-index: 1001;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #2c3e50;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            font-size: 16px;
+            margin: 0 15px;
+            padding: 10px 20px;
+            transition: all 0.3s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .navbar a:hover {
+            background: #34495e;
+            transform: translateY(-3px);
+        }
+
+        /* Shopping Cart Icon */
+        .cart-icon {
+            position: relative;
+            margin-left: auto;
+            padding: 10px 20px;
+        }
+
+        .cart-icon .cart-count {
+            position: absolute;
+            top: -5px;
+            right: 5px;
+            background: #ff6600;
+            color: white;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        /* Hero Section */
+        .hero-container {
+            position: relative;
+            overflow: hidden;
+            height: 400px; /* Increased height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            margin-top: 60px; /* Adjusted for fixed navbar */
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.6);
+        }
+
+        .hero-text {
+            font-size: 48px; /* Increased font size */
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .slogan {
+            font-size: 24px; /* Increased font size */
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Special Items Section */
+        .section {
+            padding: 80px 20px;
+            background: #fff;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .special-items {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .special-item {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            transition: all 0.3s ease;
+        }
+
+        .special-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .special-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .special-item h3 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .special-item p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .add-to-cart {
+            font-size: 16px;
+            padding: 10px 20px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: #34495e;
+            transform: translateY(-3px);
+        }
+
+        /* Back to Home Button */
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            background-color: #2c3e50;
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .back-home-btn:hover {
+            background-color: #34495e;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer a {
+            color: #ff6600;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #ff4a3d;
+        }
+
+        .footer p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .footer .social-media {
+            margin-top: 20px;
+        }
+
+        .footer .social-media a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer .social-media a:hover {
+            color: #ff6600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-container {
+                height: 300px; /* Adjusted for smaller screens */
+            }
+
+            .hero-text {
+                font-size: 36px; /* Adjusted for smaller screens */
+            }
+
+            .slogan {
+                font-size: 18px; /* Adjusted for smaller screens */
+            }
+
+            .special-items {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .special-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="#specials">Specials</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+        <a href="cart.html" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </a>
+    </div>
+
+    <!-- Hero Section with Larger Height -->
+    <div class="hero-container" id="main-content">
+        <video class="hero-video" autoplay muted loop poster="fallback-image.jpg">
+            <source src="videos/new-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-text">New Taste Specials</div>
+        <div class="slogan">Discover Our Latest Creations</div>
+    </div>
+
+    <!-- Special Items Section -->
+    <div class="section" id="specials">
+        <h2>New Taste Specials</h2>
+        <div class="special-items">
+            <!-- Item 1: Matcha Mochi Cheesecake -->
+            <div class="special-item">
+                <img src="matcha-mochi-cheesecake.jpg" alt="Matcha Mochi Cheesecake" loading="lazy">
+                <h3>Matcha Mochi Cheesecake</h3>
+                <p>A fusion of Japanese flavors! Creamy matcha cheesecake with a layer of soft, chewy mochi and a drizzle of sweet red bean paste.</p>
+                <p><strong>$10.99</strong></p>
+                <button class="add-to-cart" data-name="Matcha Mochi Cheesecake" data-price="10.99">Add to Cart</button>
+            </div>
+
+            <!-- Item 2: Salted Caramel Brownie -->
+            <div class="special-item">
+                <img src="salted-caramel-brownie.jpg" alt="Salted Caramel Brownie" loading="lazy">
+                <h3>Salted Caramel Brownie</h3>
+                <p>Decadent chocolate brownie layered with gooey salted caramel and a hint of sea salt.</p>
+                <p><strong>$6.99</strong></p>
+                <button class="add-to-cart" data-name="Salted Caramel Brownie" data-price="6.99">Add to Cart</button>
+            </div>
+
+            <!-- Item 3: Berry Pavlova -->
+            <div class="special-item">
+                <img src="berry-pavlova.jpg" alt="Berry Pavlova" loading="lazy">
+                <h3>Berry Pavlova</h3>
+                <p>A light and airy meringue dessert topped with fresh berries and whipped cream.</p>
+                <p><strong>$8.99</strong></p>
+                <button class="add-to-cart" data-name="Berry Pavlova" data-price="8.99">Add to Cart</button>
+            </div>
+
+            <!-- Item 4: Churro Ice Cream Sandwich -->
+            <div class="special-item">
+                <img src="churro-ice-cream-sandwich.jpg" alt="Churro Ice Cream Sandwich" loading="lazy">
+                <h3>Churro Ice Cream Sandwich</h3>
+                <p>Warm, cinnamon-sugar churros sandwiching a scoop of vanilla bean ice cream.</p>
+                <p><strong>$7.99</strong></p>
+                <button class="add-to-cart" data-name="Churro Ice Cream Sandwich" data-price="7.99">Add to Cart</button>
+            </div>
+
+            <!-- Item 5: Lemon Lavender Tart -->
+            <div class="special-item">
+                <img src="lemon-lavender-tart.jpg" alt="Lemon Lavender Tart" loading="lazy">
+                <h3>Lemon Lavender Tart</h3>
+                <p>A tangy lemon curd tart infused with lavender, topped with edible flowers.</p>
+                <p><strong>$10.99</strong></p>
+                <button class="add-to-cart" data-name="Lemon Lavender Tart" data-price="10.99">Add to Cart</button>
+            </div>
+
+            <!-- Item 6: Chocolate Hazelnut Croissant -->
+            <div class="special-item">
+                <img src="chocolate-hazelnut-croissant.jpg" alt="Chocolate Hazelnut Croissant" loading="lazy">
+                <h3>Chocolate Hazelnut Croissant</h3>
+                <p>Flaky croissant filled with rich chocolate hazelnut spread, perfect for breakfast or dessert.</p>
+                <p><strong>$5.99</strong></p>
+                <button class="add-to-cart" data-name="Chocolate Hazelnut Croissant" data-price="5.99">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Back to Home Button -->
+        <a href="index.html" class="back-home-btn">Back to Home</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer" id="contact">
+        <p>Contact us at <a href="mailto:support@quickcrave.com">support@quickcrave.com</a> | Phone: +123-456-7890</p>
+        <div class="social-media">
+            <a href="https://facebook.com/quickcrave" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://instagram.com/quickcrave" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://twitter.com/quickcrave" target="_blank" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://linkedin.com/company/quickcrave" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+        <p>&copy; 2025 QuickCrave. All rights reserved.</p>
+    </div>
+
+    <script>
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartCount = document.querySelector('.cart-count');
+
+        // Function to update cart count
+        function updateCartCount() {
+            cartCount.textContent = cart.length;
+        }
+
+        // Function to add item to cart
+        function addToCart(itemName, itemPrice) {
+            const item = { name: itemName, price: parseFloat(itemPrice) };
+            cart.push(item);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert(`${itemName} added to cart!`);
+        }
+
+        // Add event listeners to "Add to Cart" buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const itemName = button.getAttribute('data-name');
+                const itemPrice = button.getAttribute('data-price');
+                addToCart(itemName, itemPrice);
+            });
+        });
+
+        // Initialize cart count on page load
+        updateCartCount();
+    </script>
+</body>
+</html>
