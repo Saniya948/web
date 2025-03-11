@@ -777,6 +777,48 @@
             max-height: 200px; /* Adjust based on content */
         }
 
+        /* Kitchen Stories Section */
+        .kitchen-stories-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .kitchen-story-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .kitchen-story-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .kitchen-story-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+            transition: transform 0.3s ease;
+        }
+
+        .kitchen-story-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .story-caption {
+            padding: 15px;
+            background: #fff;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            border-radius: 0 0 10px 10px;
+        }
+
         /* Popup */
         .popup {
             display: none;
@@ -1282,6 +1324,44 @@
         <div class="bts-container">
             <img src="kitchen.jpg" alt="Our Kitchen" loading="lazy">
             <p>Meet the team behind your favorite meals! Our chefs work tirelessly to bring you the best dining experience.</p>
+        </div>
+    </div>
+
+    <!-- Kitchen Stories Section -->
+    <div class="section" id="kitchen-stories">
+        <h2>Kitchen Stories</h2>
+        <p>Take a peek behind the scenes and see how our chefs craft your favorite dishes with love and passion!</p>
+        <div class="kitchen-stories-container">
+            <!-- Image 1 -->
+            <div class="kitchen-story-item">
+                <img src="kitchen1.jpg" alt="Chef preparing a dish" loading="lazy">
+                <div class="story-caption">Chef Maria preparing our signature Chocolate Lava Cake.</div>
+            </div>
+            <!-- Image 2 -->
+            <div class="kitchen-story-item">
+                <img src="kitchen2.jpg" alt="Fresh ingredients" loading="lazy">
+                <div class="story-caption">Fresh, organic ingredients ready to be transformed into delicious meals.</div>
+            </div>
+            <!-- Image 3 -->
+            <div class="kitchen-story-item">
+                <img src="kitchen3.jpg" alt="Team working together" loading="lazy">
+                <div class="story-caption">Our team working together to ensure every dish is perfect.</div>
+            </div>
+            <!-- Image 4 -->
+            <div class="kitchen-story-item">
+                <img src="kitchen4.jpg" alt="Plating a dessert" loading="lazy">
+                <div class="story-caption">Plating our famous Tiramisu with precision and care.</div>
+            </div>
+            <!-- Image 5 -->
+            <div class="kitchen-story-item">
+                <img src="kitchen5.jpg" alt="Baking in progress" loading="lazy">
+                <div class="story-caption">Baking our artisan bread fresh every morning.</div>
+            </div>
+            <!-- Image 6 -->
+            <div class="kitchen-story-item">
+                <img src="kitchen6.jpg" alt="Chef decorating a cake" loading="lazy">
+                <div class="story-caption">Chef John adding the final touches to a custom birthday cake.</div>
+            </div>
         </div>
     </div>
 
