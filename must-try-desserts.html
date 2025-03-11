@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore QuickCrave's must-try desserts! Indulge in our delicious and expertly crafted desserts, delivered fresh to your doorstep.">
+    <title>Must-Try Desserts - QuickCrave</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #2c3e50;
+            color: #fff;
+            padding: 10px;
+            z-index: 1001;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #2c3e50;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            font-size: 16px;
+            margin: 0 15px;
+            padding: 10px 20px;
+            transition: all 0.3s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .navbar a:hover {
+            background: #34495e;
+            transform: translateY(-3px);
+        }
+
+        /* Shopping Cart Icon */
+        .cart-icon {
+            position: relative;
+            margin-left: auto;
+            padding: 10px 20px;
+        }
+
+        .cart-icon .cart-count {
+            position: absolute;
+            top: -5px;
+            right: 5px;
+            background: #ff6600;
+            color: white;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        /* Hero Section */
+        .hero-container {
+            position: relative;
+            overflow: hidden;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.6);
+        }
+
+        .hero-text {
+            font-size: 48px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .slogan {
+            font-size: 24px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 20px;
+            background: #fff;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dessert-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .dessert-item {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            transition: all 0.3s ease;
+        }
+
+        .dessert-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .dessert-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .dessert-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .dessert-item h3 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .dessert-item p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .add-to-cart {
+            font-size: 16px;
+            padding: 10px 20px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: #34495e;
+            transform: translateY(-3px);
+        }
+
+        /* Back to Home Button */
+        .back-to-home {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            background-color: #34495e;
+            transform: translateY(-3px);
+        }
+
+        /* Discounts Popup */
+        .discounts-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .discounts-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            text-align: left;
+            position: relative;
+        }
+
+        .discounts-content h2 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .discounts-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .discounts-content ul li {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .close-discounts {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #2c3e50;
+        }
+
+        /* Discounts Button */
+        .discounts-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .discounts-btn:hover {
+            background: #34495e;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 24px;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #00bfff;
+            transform: scale(1.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-container {
+                height: 300px;
+            }
+
+            .dessert-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .dessert-item {
+                width: 100%;
+            }
+
+            .discounts-content {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#bestsellers">Bestsellers</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+        <a href="cart.html" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero-container" id="main-content">
+        <video class="hero-video" autoplay muted loop poster="fallback-image.jpg">
+            <source src="videos/new-hero-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-text">Must-Try Desserts</div>
+        <div class="slogan">Indulge in Sweet Perfection</div>
+    </div>
+
+    <!-- Must-Try Desserts Section -->
+    <div class="section" id="must-try-desserts">
+        <h2>Must-Try Desserts</h2>
+        <div class="dessert-list">
+            <!-- Existing Items -->
+            <div class="dessert-item">
+                <img src="dessert1.jpg" alt="Chocolate Lava Cake" loading="lazy">
+                <h3>Chocolate Lava Cake</h3>
+                <p>A rich, gooey chocolate cake with a molten center. Perfect for chocolate lovers!</p>
+                <button class="add-to-cart" data-name="Chocolate Lava Cake" data-price="8.99">Add to Cart</button>
+            </div>
+            <div class="dessert-item">
+                <img src="dessert2.jpg" alt="Berry Cheesecake" loading="lazy">
+                <h3>Berry Cheesecake</h3>
+                <p>Rich and creamy cheesecake topped with fresh berries and a tangy berry sauce.</p>
+                <button class="add-to-cart" data-name="Berry Cheesecake" data-price="9.99">Add to Cart</button>
+            </div>
+            <div class="dessert-item">
+                <img src="dessert3.jpg" alt="Vanilla Bean Panna Cotta" loading="lazy">
+                <h3>Vanilla Bean Panna Cotta</h3>
+                <p>Smooth and velvety panna cotta with a hint of vanilla, topped with caramelized nuts.</p>
+                <button class="add-to-cart" data-name="Vanilla Bean Panna Cotta" data-price="7.99">Add to Cart</button>
+            </div>
+
+            <!-- New Unique Items -->
+            <div class="dessert-item">
+                <img src="dessert4.jpg" alt="Matcha Mousse Cake" loading="lazy">
+                <h3>Matcha Mousse Cake</h3>
+                <p>A light and airy matcha mousse cake with a delicate sponge base and a hint of sweetness.</p>
+                <button class="add-to-cart" data-name="Matcha Mousse Cake" data-price="10.99">Add to Cart</button>
+            </div>
+            <div class="dessert-item">
+                <img src="dessert5.jpg" alt="Salted Caramel Tart" loading="lazy">
+                <h3>Salted Caramel Tart</h3>
+                <p>A buttery tart filled with rich salted caramel and topped with a sprinkle of sea salt.</p>
+                <button class="add-to-cart" data-name="Salted Caramel Tart" data-price="8.99">Add to Cart</button>
+            </div>
+            <div class="dessert-item">
+                <img src="dessert6.jpg" alt="Raspberry Chocolate Dome" loading="lazy">
+                <h3>Raspberry Chocolate Dome</h3>
+                <p>A decadent chocolate dome filled with raspberry mousse and a surprise center.</p>
+                <button class="add-to-cart" data-name="Raspberry Chocolate Dome" data-price="12.99">Add to Cart</button>
+            </div>
+            <div class="dessert-item">
+                <img src="dessert7.jpg" alt="Pistachio Baklava" loading="lazy">
+                <h3>Pistachio Baklava</h3>
+                <p>Layers of flaky pastry filled with crushed pistachios and sweet honey syrup.</p>
+                <button class="add-to-cart" data-name="Pistachio Baklava" data-price="6.99">Add to Cart</button>
+            </div>
+            <div class="dessert-item">
+                <img src="dessert8.jpg" alt="Mango Sticky Rice" loading="lazy">
+                <h3>Mango Sticky Rice</h3>
+                <p>A Thai-inspired dessert with sweet sticky rice, fresh mango, and coconut milk.</p>
+                <button class="add-to-cart" data-name="Mango Sticky Rice" data-price="7.99">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Back to Home Button -->
+        <a href="index.html" class="back-to-home">Back to Home</a>
+    </div>
+
+    <!-- Discounts Button -->
+    <button id="discounts-btn" class="discounts-btn">
+        <i class="fas fa-tag"></i> Available Discounts
+    </button>
+
+    <!-- Discounts Popup -->
+    <div id="discounts-popup" class="discounts-popup">
+        <div class="discounts-content">
+            <button id="close-discounts" class="close-discounts">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Available Discounts</h2>
+            <ul>
+                <li>🎉 Get 10% off on your first order!</li>
+                <li>🎂 15% off on all cakes for birthdays.</li>
+                <li>🍰 Buy 2 desserts, get 1 free!</li>
+                <li>🎁 Free delivery on orders above $50.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer" id="contact">
+        <p>Contact us at <a href="mailto:support@quickcrave.com">support@quickcrave.com</a> | Phone: +123-456-7890</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/quickcrave.demo" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com/quickcrave_demo" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/quickcrave_demo" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/quickcrave-demo" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/@quickcravedemo" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>&copy; 2025 QuickCrave. All rights reserved.</p>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" title="Go to top">↑</button>
+
+    <script>
+        // Cart functionality
+        let cart = [];
+        const cartCount = document.querySelector('.cart-count');
+
+        // Function to add item to cart
+        function addToCart(itemName, itemPrice) {
+            const item = { name: itemName, price: itemPrice };
+            cart.push(item);
+            updateCartCount();
+            saveCartToLocalStorage();
+        }
+
+        // Function to update cart count
+        function updateCartCount() {
+            cartCount.textContent = cart.length;
+        }
+
+        // Function to save cart to localStorage
+        function saveCartToLocalStorage() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Function to load cart from localStorage
+        function loadCartFromLocalStorage() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartCount();
+            }
+        }
+
+        // Load cart when the page loads
+        loadCartFromLocalStorage();
+
+        // Add event listeners to "Add to Cart" buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const itemName = button.getAttribute('data-name');
+                const itemPrice = parseFloat(button.getAttribute('data-price'));
+                addToCart(itemName, itemPrice);
+            });
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Discounts Popup
+        const discountsBtn = document.getElementById('discounts-btn');
+        const discountsPopup = document.getElementById('discounts-popup');
+        const closeDiscounts = document.getElementById('close-discounts');
+
+        discountsBtn.addEventListener('click', () => {
+            discountsPopup.style.display = 'flex';
+        });
+
+        closeDiscounts.addEventListener('click', () => {
+            discountsPopup.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === discountsPopup) {
+                discountsPopup.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
