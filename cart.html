@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
-        /* Global Styles (Replicated from index.html) */
+        /* Global Styles */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -30,7 +30,7 @@
             color: inherit;
         }
 
-        /* Navbar (Replicated from index.html) */
+        /* Navbar */
         .navbar {
             background: #2c3e50;
             padding: 15px;
@@ -111,22 +111,22 @@
             font-size: 18px;
             font-weight: 500;
             color: #2c3e50;
-            flex: 1; /* Allow item name to take up available space */
+            flex: 1;
         }
 
         .item-price {
             font-size: 18px;
             font-weight: 600;
             color: #ff6f61;
-            min-width: 80px; /* Ensure consistent width for price */
-            text-align: right; /* Align price to the right */
+            min-width: 80px;
+            text-align: right;
         }
 
         .quantity-controls {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin: 0 20px; /* Add space between controls and price */
+            margin: 0 20px;
         }
 
         .quantity-controls button {
@@ -148,7 +148,7 @@
             font-size: 18px;
             font-weight: 500;
             color: #2c3e50;
-            min-width: 30px; /* Ensure consistent width for quantity */
+            min-width: 30px;
             text-align: center;
         }
 
@@ -187,6 +187,32 @@
             font-size: 18px;
             color: #555;
             padding: 40px 0;
+        }
+
+        /* Payment Methods Section */
+        .payment-methods {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-methods h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .payment-methods label {
+            display: block;
+            margin: 10px 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .payment-methods input[type="radio"] {
+            margin-right: 10px;
         }
 
         /* Thank You Popup */
@@ -244,7 +270,7 @@
             background: #ff4a3d;
         }
 
-        /* Footer (Replicated from index.html) */
+        /* Footer */
         .footer {
             background: #2c3e50;
             color: #fff;
@@ -331,6 +357,31 @@
         <div class="total" id="total">
             Total: $0.00
         </div>
+
+        <!-- Payment Method Selection -->
+        <div class="payment-methods">
+            <h3>Select Payment Method</h3>
+            <form id="payment-form">
+                <label>
+                    <input type="radio" name="payment-method" value="credit-card" checked>
+                    Credit/Debit Card
+                </label>
+                <label>
+                    <input type="radio" name="payment-method" value="paypal">
+                    PayPal
+                </label>
+                <label>
+                    <input type="radio" name="payment-method" value="cash-on-delivery">
+                    Cash on Delivery
+                </label>
+                <label>
+                    <input type="radio" name="payment-method" value="bank-transfer">
+                    Bank Transfer
+                </label>
+            </form>
+        </div>
+
+        <!-- Checkout Button -->
         <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
     </main>
 
@@ -338,7 +389,8 @@
     <div class="thank-you-popup" id="thank-you-popup">
         <div class="thank-you-content">
             <h2>Thank You for Your Order!</h2>
-            <p>Your order has been placed successfully. We appreciate your business!</p>
+            <p>Your order has been placed successfully. Payment method: <strong id="selected-payment-method"></strong>.</p>
+            <p>We appreciate your business!</p>
             <button onclick="closeThankYouPopup()">Close</button>
         </div>
     </div>
@@ -383,7 +435,7 @@
             emptyCartMessage.style.display = 'none';
             cart.forEach((item, index) => {
                 const price = parseFloat(item.price);
-                const quantity = item.quantity || 1; // Default quantity is 1
+                const quantity = item.quantity || 1;
 
                 // Create cart item element
                 const itemElement = document.createElement('div');
@@ -443,12 +495,19 @@
                 alert('Your cart is empty. Add items to proceed to checkout.');
                 return;
             }
+
+            // Get selected payment method
+            const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+
+            // Display payment method in the Thank You popup
+            document.getElementById('selected-payment-method').textContent = selectedPaymentMethod;
+
             // Show the Thank You popup
             const thankYouPopup = document.getElementById('thank-you-popup');
             thankYouPopup.classList.add('active');
+
             // Clear the cart after checkout
             localStorage.removeItem('cart');
-            // Update the cart display
             renderCart();
         }
 
