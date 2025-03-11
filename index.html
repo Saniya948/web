@@ -75,10 +75,39 @@
             transform: translateY(-3px);
         }
 
+        /* Auth Buttons */
+        .auth-buttons {
+            margin-left: auto; /* Push buttons to the right */
+            display: flex;
+            gap: 10px; /* Space between buttons */
+        }
+
+        .auth-btn {
+            color: #fff;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            background-color: #34495e; /* Default background */
+        }
+
+        .auth-btn:hover {
+            background-color: #2c3e50; /* Darker on hover */
+            transform: translateY(-2px);
+        }
+
+        .signup-btn {
+            background-color: #ff6600; /* Orange for signup button */
+        }
+
+        .signup-btn:hover {
+            background-color: #e65c00; /* Darker orange on hover */
+        }
+
         /* Shopping Cart Icon */
         .cart-icon {
             position: relative;
-            margin-left: auto;
+            margin-left: 20px; /* Add space between auth buttons and cart */
             padding: 10px 20px;
         }
 
@@ -91,43 +120,6 @@
             font-size: 12px;
             padding: 2px 6px;
             border-radius: 50%;
-        }
-
-        /* Collaborators Section */
-        .collaborators-section {
-            margin-top: 80px;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .collaborators-marquee {
-            display: flex;
-            overflow: hidden;
-            white-space: nowrap;
-            padding: 20px 0;
-        }
-
-        .collaborators-marquee img {
-            height: 50px;
-            margin: 0 40px;
-            filter: grayscale(100%);
-            transition: all 0.3s ease;
-        }
-
-        .collaborators-marquee img:hover {
-            filter: grayscale(0%);
-            transform: scale(1.1);
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .collaborators-marquee div {
-            display: flex;
-            animation: scroll 20s linear infinite;
         }
 
         /* Hero Section */
@@ -727,13 +719,23 @@
             margin: 0 auto;
         }
 
+        /* FAQ Section Styles */
         .faq-container {
             max-width: 800px;
             margin: 0 auto;
+            text-align: left;
         }
 
         .faq-item {
             margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .faq-question {
@@ -742,24 +744,40 @@
             padding: 15px;
             font-size: 18px;
             background: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: none;
             cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f1f1f1;
+        }
+
+        .faq-question i {
+            font-size: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
         }
 
         .faq-answer {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-answer.open {
             padding: 15px;
-            display: none;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-top: none;
-            border-radius: 0 0 5px 5px;
+            max-height: 200px; /* Adjust based on content */
         }
 
-        .faq-answer p {
-            margin: 0;
-        }
-
+        /* Popup */
         .popup {
             display: none;
             position: fixed;
@@ -989,6 +1007,14 @@
         <a href="#collaborations">Collaborations</a>
         <a href="#reviews">Reviews</a>
         <a href="#contact">Contact</a>
+        
+        <!-- Login/Signup Buttons -->
+        <div class="auth-buttons">
+            <a href="login.html" class="auth-btn">Login</a>
+            <a href="signup.html" class="auth-btn signup-btn">Sign Up</a>
+        </div>
+
+        <!-- Shopping Cart Icon -->
         <a href="cart.html" class="cart-icon">
             <i class="fas fa-shopping-cart"></i>
             <span class="cart-count">0</span>
@@ -1376,15 +1402,48 @@
         <h2>Frequently Asked Questions</h2>
         <div class="faq-container">
             <div class="faq-item">
-                <button class="faq-question">What are your delivery hours?</button>
+                <button class="faq-question">
+                    What are your delivery hours?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
                 <div class="faq-answer">
-                    <p>We deliver from 10 AM to 10 PM, 7 days a week.</p>
+                    <p>We deliver from <strong>10 AM to 10 PM</strong>, 7 days a week.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">Do you offer vegetarian options?</button>
+                <button class="faq-question">
+                    Do you offer vegetarian options?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
                 <div class="faq-answer">
-                    <p>Yes, we have a wide range of vegetarian and vegan dishes.</p>
+                    <p>Yes, we have a wide range of <strong>vegetarian and vegan dishes</strong> to choose from.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    How can I track my order?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Once your order is confirmed, you'll receive a tracking link via email or SMS to monitor your delivery in real-time.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    What payment methods do you accept?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>We accept <strong>credit/debit cards</strong>, <strong>PayPal</strong>, and <strong>Apple Pay</strong>.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Can I modify or cancel my order?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>You can modify or cancel your order within <strong>10 minutes</strong> of placing it. After that, the order will be processed and cannot be changed.</p>
                 </div>
             </div>
         </div>
@@ -1510,7 +1569,25 @@
         // Call the function to display items
         displayRecentlyOrdered();
 
-        // Rest of the JavaScript remains unchanged
+        // FAQ Toggle Functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+
+                // Toggle the open class
+                answer.classList.toggle('open');
+                question.classList.toggle('active');
+
+                // Close other FAQs
+                document.querySelectorAll('.faq-question').forEach(otherQuestion => {
+                    if (otherQuestion !== question) {
+                        otherQuestion.nextElementSibling.classList.remove('open');
+                        otherQuestion.classList.remove('active');
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
