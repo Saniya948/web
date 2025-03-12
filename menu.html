@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore QuickCrave's delicious menu featuring authentic European cuisine, desserts, and beverages. Order now for fast delivery!">
+    <title>QuickCrave - Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        /* Reuse the same styles as index.html */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #2c3e50;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            font-size: 16px;
+            margin: 0 15px;
+            padding: 10px 20px;
+            transition: all 0.3s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .navbar a:hover {
+            background: #34495e;
+            transform: translateY(-3px);
+        }
+
+        .cart-icon {
+            position: relative;
+            margin-left: auto;
+            padding: 10px 20px;
+        }
+
+        .cart-icon .cart-count {
+            position: absolute;
+            top: -5px;
+            right: 5px;
+            background: #ff6600;
+            color: white;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 100px 20px 60px;
+            background: #fff;
+            text-align: center;
+        }
+
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .menu-item h3 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .menu-item p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .menu-item .price {
+            font-size: 18px;
+            color: #ff6600;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart {
+            font-size: 16px;
+            padding: 10px 20px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: #34495e;
+            transform: translateY(-3px);
+        }
+
+        /* Back to Home Button */
+        .back-to-home {
+            margin-top: 30px;
+        }
+
+        .back-to-home a {
+            font-size: 18px;
+            padding: 15px 30px;
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-home a:hover {
+            background-color: #34495e;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer a {
+            color: #ff6600;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #ff4a3d;
+        }
+
+        .footer p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .footer .social-media {
+            margin-top: 20px;
+        }
+
+        .footer .social-media a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer .social-media a:hover {
+            color: #00bfff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#bestsellers">Bestsellers</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+        <a href="cart.html" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </a>
+    </div>
+
+    <!-- Menu Section -->
+    <main class="menu-section" id="main-content">
+        <h2>Our Menu</h2>
+        <div class="menu-container">
+            <!-- Unique Desserts -->
+            <div class="menu-item">
+                <img src="images/saffron-panna-cotta.jpg" alt="Saffron Panna Cotta">
+                <h3>Saffron Panna Cotta</h3>
+                <p>A luxurious Italian dessert infused with saffron and topped with a honey drizzle.</p>
+                <p class="price">$9.99</p>
+                <button class="add-to-cart" data-name="Saffron Panna Cotta" data-price="9.99">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="images/black-sesame-mousse.jpg" alt="Black Sesame Mousse">
+                <h3>Black Sesame Mousse</h3>
+                <p>A rich and nutty mousse made with roasted black sesame seeds.</p>
+                <p class="price">$8.99</p>
+                <button class="add-to-cart" data-name="Black Sesame Mousse" data-price="8.99">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="images/rose-petal-tart.jpg" alt="Rose Petal Tart">
+                <h3>Rose Petal Tart</h3>
+                <p>A delicate tart filled with rose-infused custard and topped with edible rose petals.</p>
+                <p class="price">$7.99</p>
+                <button class="add-to-cart" data-name="Rose Petal Tart" data-price="7.99">Add to Cart</button>
+            </div>
+
+            <!-- Beverages -->
+            <div class="menu-item">
+                <img src="images/matcha-latte.jpg" alt="Matcha Latte">
+                <h3>Matcha Latte</h3>
+                <p>A soothing blend of matcha green tea and steamed milk.</p>
+                <p class="price">$4.99</p>
+                <button class="add-to-cart" data-name="Matcha Latte" data-price="4.99">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="images/cold-brew-coffee.jpg" alt="Cold Brew Coffee">
+                <h3>Cold Brew Coffee</h3>
+                <p>Smooth and refreshing cold brew coffee, served over ice.</p>
+                <p class="price">$5.49</p>
+                <button class="add-to-cart" data-name="Cold Brew Coffee" data-price="5.49">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="images/iced-chai-latte.jpg" alt="Iced Chai Latte">
+                <h3>Iced Chai Latte</h3>
+                <p>A spiced chai latte served chilled with a hint of sweetness.</p>
+                <p class="price">$5.99</p>
+                <button class="add-to-cart" data-name="Iced Chai Latte" data-price="5.99">Add to Cart</button>
+            </div>
+
+            <!-- Savory Dishes -->
+            <div class="menu-item">
+                <img src="images/quiche-lorraine.jpg" alt="Quiche Lorraine">
+                <h3>Quiche Lorraine</h3>
+                <p>A classic French quiche with bacon, cheese, and a flaky crust.</p>
+                <p class="price">$9.99</p>
+                <button class="add-to-cart" data-name="Quiche Lorraine" data-price="9.99">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="images/spanish-tortilla.jpg" alt="Spanish Tortilla">
+                <h3>Spanish Tortilla</h3>
+                <p>A hearty potato and egg omelette, served warm or cold.</p>
+                <p class="price">$8.49</p>
+                <button class="add-to-cart" data-name="Spanish Tortilla" data-price="8.49">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="images/croissant-sandwich.jpg" alt="Croissant Sandwich">
+                <h3>Croissant Sandwich</h3>
+                <p>A buttery croissant filled with ham, cheese, and fresh greens.</p>
+                <p class="price">$7.99</p>
+                <button class="add-to-cart" data-name="Croissant Sandwich" data-price="7.99">Add to Cart</button>
+            </div>
+
+            <!-- Breakfast Items -->
+            <div class="menu-item">
+                <img src="images/avocado-toast.jpg" alt="Avocado Toast">
+                <h3>Avocado Toast</h3>
+                <p>Smashed avocado on sourdough toast, topped with cherry tomatoes and a sprinkle of chili flakes.</p>
+                <p class="price">$7.99</p>
+                <button class="add-to-cart" data-name="Avocado Toast" data-price="7.99">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="images/pancakes.jpg" alt="Pancakes">
+                <h3>Fluffy Pancakes</h3>
+                <p>Stack of fluffy pancakes served with maple syrup and fresh berries.</p>
+                <p class="price">$8.49</p>
+                <button class="add-to-cart" data-name="Fluffy Pancakes" data-price="8.49">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="images/breakfast-burrito.jpg" alt="Breakfast Burrito">
+                <h3>Breakfast Burrito</h3>
+                <p>Scrambled eggs, black beans, cheese, and salsa wrapped in a warm tortilla.</p>
+                <p class="price">$9.99</p>
+                <button class="add-to-cart" data-name="Breakfast Burrito" data-price="9.99">Add to Cart</button>
+            </div>
+
+            <!-- Vegan Options -->
+            <div class="menu-item">
+                <img src="images/vegan-bowl.jpg" alt="Vegan Bowl">
+                <h3>Vegan Buddha Bowl</h3>
+                <p>Quinoa, roasted veggies, avocado, and tahini dressing.</p>
+                <p class="price">$10.99</p>
+                <button class="add-to-cart" data-name="Vegan Buddha Bowl" data-price="10.99">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="images/vegan-brownie.jpg" alt="Vegan Brownie">
+                <h3>Vegan Chocolate Brownie</h3>
+                <p>Rich and fudgy vegan brownie made with dark chocolate.</p>
+                <p class="price">$5.99</p>
+                <button class="add-to-cart" data-name="Vegan Chocolate Brownie" data-price="5.99">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="images/vegan-smoothie.jpg" alt="Vegan Smoothie">
+                <h3>Vegan Berry Smoothie</h3>
+                <p>Blend of mixed berries, almond milk, and chia seeds.</p>
+                <p class="price">$6.49</p>
+                <button class="add-to-cart" data-name="Vegan Berry Smoothie" data-price="6.49">Add to Cart</button>
+            </div>
+
+            <!-- Seasonal Specials -->
+            <div class="menu-item">
+                <img src="images/pumpkin-spice-latte.jpg" alt="Pumpkin Spice Latte">
+                <h3>Pumpkin Spice Latte</h3>
+                <p>Fall favorite! Espresso with pumpkin spice syrup and steamed milk.</p>
+                <p class="price">$5.99</p>
+                <button class="add-to-cart" data-name="Pumpkin Spice Latte" data-price="5.99">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="images/apple-pie.jpg" alt="Apple Pie">
+                <h3>Classic Apple Pie</h3>
+                <p>Warm apple pie with a flaky crust, served with vanilla ice cream.</p>
+                <p class="price">$7.99</p>
+                <button class="add-to-cart" data-name="Classic Apple Pie" data-price="7.99">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="images/gingerbread-cookie.jpg" alt="Gingerbread Cookie">
+                <h3>Gingerbread Cookies</h3>
+                <p>Festive gingerbread cookies with royal icing.</p>
+                <p class="price">$4.99</p>
+                <button class="add-to-cart" data-name="Gingerbread Cookies" data-price="4.99">Add to Cart</button>
+            </div>
+
+            <!-- Gourmet Treats -->
+            <div class="menu-item">
+                <img src="images/truffle-pasta.jpg" alt="Truffle Pasta">
+                <h3>Truffle Pasta</h3>
+                <p>Creamy pasta with truffle oil, Parmesan, and fresh herbs.</p>
+                <p class="price">$14.99</p>
+                <button class="add-to-cart" data-name="Truffle Pasta" data-price="14.99">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="images/lobster-roll.jpg" alt="Lobster Roll">
+                <h3>Lobster Roll</h3>
+                <p>Buttery lobster meat served in a toasted brioche roll.</p>
+                <p class="price">$18.99</p>
+                <button class="add-to-cart" data-name="Lobster Roll" data-price="18.99">Add to Cart</button>
+            </div>
+            <div class="menu-item">
+                <img src="images/tiramisu.jpg" alt="Tiramisu">
+                <h3>Classic Tiramisu</h3>
+                <p>Layered coffee-soaked ladyfingers with mascarpone cream.</p>
+                <p class="price">$8.99</p>
+                <button class="add-to-cart" data-name="Classic Tiramisu" data-price="8.99">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Back to Home Button -->
+        <div class="back-to-home">
+            <a href="index.html">Back to Home</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div class="footer" id="contact">
+        <p>Contact us at <a href="mailto:support@quickcrave.com">support@quickcrave.com</a> | Phone: +123-456-7890</p>
+        <div class="social-media">
+            <a href="https://facebook.com/quickcrave" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/quickcrave" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/quickcrave" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com/company/quickcrave" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p>&copy; 2025 QuickCrave. All rights reserved.</p>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" title="Go to top">↑</button>
+
+    <script>
+        // Cart functionality
+        let cart = [];
+        const cartCount = document.querySelector('.cart-count');
+
+        // Function to add item to cart
+        function addToCart(itemName, itemPrice) {
+            const item = { name: itemName, price: itemPrice };
+            cart.push(item);
+            updateCartCount();
+            saveCartToLocalStorage();
+        }
+
+        // Function to update cart count
+        function updateCartCount() {
+            cartCount.textContent = cart.length;
+        }
+
+        // Function to save cart to localStorage
+        function saveCartToLocalStorage() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Function to load cart from localStorage
+        function loadCartFromLocalStorage() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartCount();
+            }
+        }
+
+        // Load cart when the page loads
+        loadCartFromLocalStorage();
+
+        // Add event listeners to "Add to Cart" buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const itemName = button.getAttribute('data-name');
+                const itemPrice = parseFloat(button.getAttribute('data-price'));
+                addToCart(itemName, itemPrice);
+            });
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
