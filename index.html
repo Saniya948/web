@@ -122,6 +122,75 @@
             border-radius: 50%;
         }
 
+        /* Collaborators Section */
+        .collaborators-section {
+            margin-top: 80px;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Hide overflow for the marquee */
+        }
+
+        .collaborators-marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            width: 100%;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scroll 20s linear infinite;
+        }
+
+        .collaborator-item {
+            display: inline-block;
+            position: relative;
+            margin: 0 20px; /* Space between images */
+            transition: all 0.3s ease;
+        }
+
+        .collaborator-item img {
+            height: 50px; /* Small image size */
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+
+        .collaborator-item:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
+        /* Tooltip Styling */
+        .collaborator-item::after {
+            content: attr(data-name); /* Pull the name from the data-name attribute */
+            position: absolute;
+            bottom: -30px; /* Position below the image */
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 10; /* Ensure the tooltip is above other elements */
+        }
+
+        .collaborator-item:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         /* Hero Section */
         .hero-container {
             position: relative;
@@ -1089,22 +1158,52 @@
 
     <!-- Collaborators Section -->
     <div class="collaborators-section">
+        <h2>Our Collaborators</h2>
         <div class="collaborators-marquee">
-            <div>
-                <img src="collab1.png" alt="Bakers Delight">
-                <img src="collab2.png" alt="Gourmet Delights">
-                <img src="collab3.png" alt="Sweet Treats Bakery">
-                <img src="collab4.png" alt="Artisan Bakes">
-                <img src="collab5.png" alt="Chef's Choice">
-                <img src="collab6.png" alt="Delicious Eats">
-            </div>
-            <div>
-                <img src="collab1.png" alt="Bakers Delight">
-                <img src="collab2.png" alt="Gourmet Delights">
-                <img src="collab3.png" alt="Sweet Treats Bakery">
-                <img src="collab4.png" alt="Artisan Bakes">
-                <img src="collab5.png" alt="Chef's Choice">
-                <img src="collab6.png" alt="Delicious Eats">
+            <div class="marquee-content">
+                <!-- Collaborator 1 -->
+                <div class="collaborator-item" data-name="Bakers Delight">
+                    <img src="collab1.png" alt="Bakers Delight">
+                </div>
+                <!-- Collaborator 2 -->
+                <div class="collaborator-item" data-name="Gourmet Delights">
+                    <img src="collab2.png" alt="Gourmet Delights">
+                </div>
+                <!-- Collaborator 3 -->
+                <div class="collaborator-item" data-name="Sweet Treats Bakery">
+                    <img src="collab3.png" alt="Sweet Treats Bakery">
+                </div>
+                <!-- Collaborator 4 -->
+                <div class="collaborator-item" data-name="Artisan Bakes">
+                    <img src="collab4.png" alt="Artisan Bakes">
+                </div>
+                <!-- Collaborator 5 -->
+                <div class="collaborator-item" data-name="Chef's Choice">
+                    <img src="collab5.png" alt="Chef's Choice">
+                </div>
+                <!-- Collaborator 6 -->
+                <div class="collaborator-item" data-name="Delicious Eats">
+                    <img src="collab6.png" alt="Delicious Eats">
+                </div>
+                <!-- Duplicate images for seamless looping -->
+                <div class="collaborator-item" data-name="Bakers Delight">
+                    <img src="collab1.png" alt="Bakers Delight">
+                </div>
+                <div class="collaborator-item" data-name="Gourmet Delights">
+                    <img src="collab2.png" alt="Gourmet Delights">
+                </div>
+                <div class="collaborator-item" data-name="Sweet Treats Bakery">
+                    <img src="collab3.png" alt="Sweet Treats Bakery">
+                </div>
+                <div class="collaborator-item" data-name="Artisan Bakes">
+                    <img src="collab4.png" alt="Artisan Bakes">
+                </div>
+                <div class="collaborator-item" data-name="Chef's Choice">
+                    <img src="collab5.png" alt="Chef's Choice">
+                </div>
+                <div class="collaborator-item" data-name="Delicious Eats">
+                    <img src="collab6.png" alt="Delicious Eats">
+                </div>
             </div>
         </div>
     </div>
